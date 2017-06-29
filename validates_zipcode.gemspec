@@ -3,6 +3,8 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'validates_zipcode/version'
 
+is_git_repo = File.exists? File.join(File.dirname(__FILE__), '.git')
+
 Gem::Specification.new do |s|
   s.name          = "validates_zipcode"
   s.version       = ValidatesZipcode::VERSION
@@ -13,7 +15,12 @@ Gem::Specification.new do |s|
   s.homepage      = "http://github.com/dgilperez/validates_zipcode"
   s.license       = "MIT"
 
-  s.files         = `git ls-files -z`.split("\x0")
+  s.files         = if is_git_repo
+    `git ls-files -z`.split("\x0")
+  else
+    []
+  end
+  
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
