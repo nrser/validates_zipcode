@@ -226,7 +226,7 @@ module ValidatesZipcode
       TO: /\A([a-zA-Z\d\s]){3,}\z/,
       TZ: /\A([a-zA-Z\d\s]){3,}\z/,
       TT: /\A\d{6}\z/,
-      TW: /\A\d{3}\z/,
+      TW: /\A\d{3}(\d{2})?\z/,
       UK: /\A([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)\z/,
       UG: /\A([a-zA-Z\d\s]){3,}\z/,
       UM: /\A([a-zA-Z\d\s]){3,}\z/,
