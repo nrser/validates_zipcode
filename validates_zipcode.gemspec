@@ -3,7 +3,11 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'validates_zipcode/version'
 
-is_git_repo = File.exists? File.join(File.dirname(__FILE__), '.git')
+# Don't trigger off `.git` *files* - they mean submodule, and there may
+# not be a `.git` where it points (containers where this whole dir has
+# been lazily mounted but the parent has been per-path mounted to exclude
+# the `.git`)
+is_git_repo = File.directory? File.join(File.dirname(__FILE__), '.git')
 
 Gem::Specification.new do |s|
   s.name          = "validates_zipcode"
